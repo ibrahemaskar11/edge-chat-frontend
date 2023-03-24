@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
-import Auth from "./pages/Auth";
+import Auth from "./pages/AuthPage";
 function App() {
   return (
     <Routes>
