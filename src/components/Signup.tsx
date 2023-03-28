@@ -1,31 +1,31 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
-const Login: React.FC = () => {
+const Signup = () => {
   const history = useNavigate();
   const [error, setError] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const login = async () => {
+  const [passwordConfirm, setPasswordConfim] = useState<string>("");
+
+  const signup = async () => {
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_SERVER}/api/users/login`,
+        `${process.env.REACT_APP_BACKEND_SERVER}/api/users/signup`,
         {
+          name,
           email,
           password,
+          passwordConfirm,
         }
       );
       console.log(res);
       history("/");
     } catch (err: AxiosError | any) {
-      console.log(err.response.data.message);
-      setError(err.response.data.message);
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+      console.log(err);
+      setError(err.response?.data.message);
     }
   };
   return (
@@ -36,9 +36,21 @@ const Login: React.FC = () => {
         </p>
       )}
       <div>
-        <label className="text-black abel text-xl font-[500]">Email</label>
+        <label className="text-black abel text-xl font-[500]">Name</label>
         <input
           type="text"
+          className="block  border-b-2 border-blackish w-full outline-none py-2 px-3 mb-4"
+          required
+          value={name}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setName(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <label className="text-black abel text-xl font-[500]">E-mail</label>
+        <input
+          type="email"
           className="block  border-b-2 border-blackish w-full outline-none py-2 px-3 mb-4"
           required
           value={email}
@@ -50,35 +62,48 @@ const Login: React.FC = () => {
       <div>
         <label className="text-black abel text-xl font-[500]">Password</label>
         <input
+          type="password"
           className="block  border-b-2 border-blackish w-full outline-none py-2 px-3 mb-4"
           required
-          type="password"
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setPassword(e.target.value);
           }}
         />
       </div>
+      <div>
+        <label className="text-black abel text-xl font-[500]">
+          Confirm Password
+        </label>
+        <input
+          type="password"
+          className="block  border-b-2 border-blackish w-full outline-none py-2 px-3 mb-4"
+          required
+          value={passwordConfirm}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setPasswordConfim(e.target.value);
+          }}
+        />
+      </div>
       <Link
-        to={"/auth/forgot-password"}
-        className="text-center block self-center mb-8 text-black hover:text-blackish text-[18px] abel"
+        to={"/auth/login"}
+        className="block text-center self-center mb-8 text-black hover:text-blackish text-[18px] abel"
       >
-        forgot password?
+        already have an account?
       </Link>
       <button
-        type="submit"
         className={
           "w-full text-center py-4  hover:bg-mostlyblack bg-black text-white text-2xl hover:bg-green-dark focus:outline-none mb-4 abel"
         }
         onClick={(e: React.FormEvent) => {
           e.preventDefault();
-          login();
+          signup();
         }}
       >
-        Submit
+        Create Account
       </button>
     </>
   );
 };
 
-export default Login;
+export default Signup;
