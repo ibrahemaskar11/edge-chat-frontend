@@ -1,0 +1,42 @@
+.circle1 {
+  min-width: 60vw;
+  height: 130vh;
+  border-radius: 50%;
+  position: absolute;
+  border: 3px solid #6e788d;
+}
+.circle2 {
+  min-width: 50vw;
+  height: 110vh;
+  border-radius: 50%;
+  position: absolute;
+  border: 3px solid #6e788d;
+}
+.circle3 {
+  min-width: 40vw;
+  height: 90vh;
+  border-radius: 50%;
+  position: absolute;
+  border: 3px solid #6e788d;
+}
+.container {
+  z-index: 10;
+  height: 80vh;
+  width: 60vw;
+}
+
+.circle {
+  clip-path: circle(50% at 50% 100%);
+  background-color: #5E3DB4;
+  width: 15rem;
+  height: 15rem;
+}
+.blurred-container {
+  filter: blur(20px);
+}
+.blurred-circle {
+clip-path: circle(50.0% at 50% 0);
+  background-color: #5E3DB4;
+  width: 15rem;
+  height: 15rem;
+}

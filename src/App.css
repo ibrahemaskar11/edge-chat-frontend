@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.Abel{
+    font-family: "Abel", sans-serif;
+}
+.Poiret {
+  font-family: "Poiret One", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.rounded-left {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.rounded-right {
+}
+.grayscale1 {
+  filter: grayscale(0);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn-effect {
+  position: relative;
+  z-index: 10;
+}
+.btn-effect-1 {
+  position: relative;
+  z-index: 10;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-effect span:nth-child(1) {
+  position: absolute;
+  top: -2rem;
+  height: 2rem;
+  width: 94%;
+  background-color: white;
 }
+.btn-effect span:nth-child(1)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  height: 100%;
+  width: 93%;
+  background-color: #0e0b0e;
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+.btn-effect span:nth-child(2) {
+  position: absolute;
+  bottom: -2rem;
+  height: 2rem;
+  width: 94%;
+  background-color: white;
+}
+.btn-effect span:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  height: 100%;
+  width: 93%;
+  background-color: #0e0b0e;
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+.img-pattern {
+  background-image: url(./assets/login-bg-pattern1.png);
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+  opacity: 0.2;
 }
