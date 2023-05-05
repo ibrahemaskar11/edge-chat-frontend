@@ -67,11 +67,3 @@
   border-top-right-radius: 2rem;
   border-bottom-left-radius: 2rem;
 }
-.img-pattern {
-  background-image: url(./assets/login-bg-pattern1.png);
-
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center;
-  opacity: 0.2;
-}

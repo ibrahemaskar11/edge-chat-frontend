@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classes from "./Preloader.module.css";
-import preloaderImg from "../../assets/login-bg-14.png";
+import preloaderImg from "../../assets/edge.png";
 
 const Preloader: React.FC = () => {
   return (

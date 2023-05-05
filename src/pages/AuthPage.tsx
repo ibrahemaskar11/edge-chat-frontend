@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import loginImg from "../assets/login-bg-14.png";
-import loginImg2 from "../assets/login-bg-13.png";
-import loginPattern from "../assets/login-bg-pattern1.png";
+import loginImg from "../assets/edge.png";
+import loginPattern from "../assets/pattern.png";
 import axios from "axios";
 import { AxiosError } from "axios";
 import useForm from "../hooks/useForm";
