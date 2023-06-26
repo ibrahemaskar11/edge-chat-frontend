@@ -1,17 +1,6 @@
-import React from "react";
 import { useState, useEffect } from "react";
+import { IValidateOption, IUseForm } from "../types/interfaces";
 
-export interface IValidateOption<Type> {
-  initialState: Type;
-  required: (value: Type) => boolean;
-  error: string;
-}
-
-export interface IUseForm<Type> {
-  value: Type;
-  error: string;
-  handleChange: (val: Type) => void;
-}
 
 const useForm = <Type,>(
   validateOption: IValidateOption<Type>

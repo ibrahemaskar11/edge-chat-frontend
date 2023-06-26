@@ -8,14 +8,17 @@ import Auth from "./pages/AuthPage";
 import Home from "./pages/Home";
 import Preloader from "./components/UI/Preloader";
 import { BrowserRouter as Router } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  console.log(isLoading)
+  console.log(isLoading);
   useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    console.log(jwt)
     const timeoutId = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // Simulating a 3-second loading time
+    }, 1500); // Simulating a 1.5-second loading time
 
     return () => {
       clearTimeout(timeoutId);
