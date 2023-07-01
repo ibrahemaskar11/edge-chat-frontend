@@ -24,7 +24,24 @@ const ChatBody = () => {
           </svg>
         </button>
         {/* input */}
-        <div className=" border-[2px] w-full h-12 rounded-xl flex justify-center items-center px-4 py-2">
+        <div className="gap-4 border-[2px] w-full h-12 rounded-xl flex justify-center items-center px-4 py-2">
+          <button className="flex justify-center items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14M15 9H15.01M9 9H9.01M3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C9.3345 3 6.93964 4.15875 5.29168 6"
+                stroke="#000000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
           <input
             type="text"
             placeholder="Type a message"
