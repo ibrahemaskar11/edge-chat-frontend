@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Abel&family=Barlow&family=Poppins&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 .abel {
   font-family: "Abel", sans-serif;
 }
-.inter{
-  font-family: 'Inter', sans-serif;
+.inter {
+  font-family: "Inter", sans-serif;
 }
-.name-icon{
+.name-icon {
   width: 100%;
   height: 4rem;
   border-radius: 30%;
   justify-content: center;
   align-items: center;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   color: #eee;
   font-size: 2rem;
-  font-family: 'Abel', sans-serif;
+  font-family: "Abel", sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -34,7 +34,7 @@
 
 ::-webkit-scrollbar-thumb:vertical {
   height: 30px;
-  border-radius:12px;
+  border-radius: 12px;
   background-color: #eee;
 }
 
@@ -43,8 +43,8 @@
   margin: 0;
   box-sizing: border-box;
 }
-.Abel{
-    font-family: "Abel", sans-serif;
+.Abel {
+  font-family: "Abel", sans-serif;
 }
 .Poiret {
   font-family: "Poiret One", sans-serif;
@@ -105,4 +105,25 @@
   background-color: #0e0b0e;
   border-top-right-radius: 2rem;
   border-bottom-left-radius: 2rem;
+}
+.error-panner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 3.2rem;
+  width: 25rem;
+}
+.picker {
+  position: relative;
+}
+.picker-nose{
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  bottom:1.8rem;
+  left: 5rem;
+  /* border-bottom-left-radius: 9999%;
+  border-bottom-right-radius: 9999%; */
+
 }

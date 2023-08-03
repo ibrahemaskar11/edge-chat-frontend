@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import classes from "./Preloader.module.css";
 import preloaderImg from "../../assets/edge.png";
 
-const Preloader: React.FC = () => {
+const Preloader: React.FC<{
+  loading: boolean;
+}> = ({ loading }) => {
   return (
     <>
-      <div className={classes["preloader--container"]}>
+      <div className={`${classes["preloader--container"]} ${!loading && classes['fade-out']}`}>
         <img src={preloaderImg} className={classes.box} alt="" />
 
         {/* <svg

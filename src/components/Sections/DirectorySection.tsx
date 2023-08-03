@@ -1,7 +1,7 @@
 import React from "react";
-import ChatMember from "../ChatMember";
-import FileHead from "../FileHead";
-import ImageHead from "../ImageHead";
+import ChatMember from "../chat/ChatMember";
+import FileHead from "../message/FileHead";
+import ImageHead from "../message/ImageHead";
 
 const ChatMembers = [
   {
@@ -34,7 +34,6 @@ const ChatMembers = [
     isOnline: false,
     bio: "Hello from the other side!",
   },
-  
 ];
 
 const DirectorySection = () => {

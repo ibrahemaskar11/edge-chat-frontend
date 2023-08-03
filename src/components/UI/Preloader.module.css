@@ -13,7 +13,9 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  animation: fade-out 0.3s ease forwards 1.2s;
+}
+.fade-out{
+    animation: fade-out 1s ease forwards; 
 }
 
 .input-field{
@@ -27,7 +29,7 @@
   transform: translate(-50%, -50%);
   width: 25rem;
   visibility: hidden;
-  animation: fade-in 1s cubic-bezier(0.67, 0.01, 0.15, 0.98) forwards;
+  animation: fade-in 1s cubic-bezier(0.67, 0.01, 0.15, 0.98) infinite;
 }
 
 @keyframes fade-in {
@@ -71,55 +73,3 @@
     width: 10rem;
   }
 }
-
-/* .preloader {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30rem;
-  animation: fill 0.5s ease forwards 2s;
-
-  filter: drop-shadow(0 0 0.1rem #fff);
-}
-.preloader path:nth-child(1) {
-  stroke-dasharray: 1231px;
-  stroke-dashoffset: 1231px;
-  animation: line-anim 2s ease forwards;
-  animation: line-anim 1.5s ease forwards;
-}
-
-.preloader path:nth-child(2) {
-  stroke-dasharray: 1310px;
-  stroke-dashoffset: 1310px;
-  animation: line-anim 1.5s ease forwards 0.3s;
-}
-
-.preloader path:nth-child(3) {
-  stroke-dasharray: 1332px;
-  stroke-dashoffset: 1332px;
-  animation: line-anim 1.5s ease forwards 0.6s;
-}
-
-.preloader path:nth-child(4) {
-  stroke-dasharray: 1231px;
-  stroke-dashoffset: 1231px;
-  animation: line-anim 1.5s ease forwards 0.9s;
-}
-
-@keyframes line-anim {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes fill {
-  from {
-    fill: transparent;
-  }
-  to {
-    fill: white;
-  }
-}
-
- */

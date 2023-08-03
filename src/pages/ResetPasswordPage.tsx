@@ -11,7 +11,7 @@ const ResetPasswordPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfim] = useState<string>("");
-  const loadingPanner: JSX.Element = <CircularLoading panner="Loading" />;
+  // const loadingPanner: JSX.Element = <CircularLoading panner="Loading" />;
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -35,7 +35,7 @@ const ResetPasswordPage = () => {
   };
   return (
     <>
-      {loading && !error && loadingPanner}
+      {/* {loading && !error && loadingPanner} */}
       {!loading && (
         <div className="w-full h-[100vh] py-24 flex flex-col">
           <form

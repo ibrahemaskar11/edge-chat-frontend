@@ -1,35 +1,56 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import { Route, Routes, useNavigation } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import LoginDummy from "./pages/LoginDummy";
 import Auth from "./pages/AuthPage";
 import Home from "./pages/Home";
 import Preloader from "./components/UI/Preloader";
-import { BrowserRouter as Router } from "react-router-dom";
-import Cookies from "js-cookie";
+import { ChatState } from "./store/chatProvider";
+import axios, { AxiosProgressEvent } from "axios";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const history = useNavigate();
+  const { isLoading, setIsLoading, setUser, setIsLoggedIn } = ChatState();
   console.log(isLoading);
   useEffect(() => {
-    const jwt = Cookies.get("jwt");
-    console.log(jwt)
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500); // Simulating a 1.5-second loading time
-
-    return () => {
-      clearTimeout(timeoutId);
+    const validate = async () => {
+      setIsLoading(true);
+      try {
+        const res = await axios(
+          `${process.env.REACT_APP_BACKEND_SERVER}/api/users/validate/`,
+          {
+            withCredentials: true,
+          }
+        );
+        const { data } = res.data;
+        if (data) {
+          setUser(data.user);
+          setIsLoggedIn(true);
+        } else {
+          // history("/auth/login");
+          setIsLoggedIn(false);
+        }
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+      } catch (err) {
+        console.log(err);
+        setIsLoggedIn(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+      }
     };
-  }, []); // Run only once on mount
+    validate();
+  }, [history]);
+
   return (
     <>
-      {isLoading && <Preloader />}
+      {isLoading && <Preloader loading={isLoading} />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/auth/:authMethod" element={<Auth />} />
         <Route path="/auth/" element={<Auth />} />
         <Route
           path="/auth/reset-password/:resetToken"
