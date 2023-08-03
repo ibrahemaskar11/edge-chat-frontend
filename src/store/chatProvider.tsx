@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { IChat, INotification, IUser } from "../types/interfaces";
+import { IChat, INotification, IUser } from "../types/chat";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { IChatHead } from "../types/interfaces";
+import { IChatHead } from "../types/chat";
 const ChatContext = createContext<{
   user: IUser | null;
   selectedChat: IChat | null;
@@ -56,7 +56,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedChatIsLoading, setSelectedChatIsLoading] =
     useState<boolean>(true);
   const history = useNavigate();
-  console.log(selectedChat)
+  console.log(selectedChat);
   const logoutHandler = async () => {
     // setIsLoading(true);
     try {

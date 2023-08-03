@@ -1,16 +1,19 @@
 import React from "react";
-import headerImg from "../../assets/accounts/account7.png";
+import headerImg from "../../assets/accounts/account-metallica.jpg";
+import { ChatState } from "../../store/chatProvider";
 
 const ChatHeader = () => {
+  const { selectedChat } = ChatState();
+  console.log({ selectedChat });
   return (
     <div className="flex  justify-between items-center w-full  px-8 h-[5.8rem] border-b-[1px]">
       <div className="flex h-full gap-x-4 justify-start ">
-        <div className="drop-shadow-lg py-5">
+        <div className=" py-5">
           <img src={headerImg} className="max-h-full rounded-xl" alt="" />
         </div>
         <div className="self-center">
           <h3 className="font-semibold text-xl tracking-[0.05rem] abel">
-            Ibrahim Askar
+            {selectedChat?.chat?.chatName}
           </h3>
           <h5 className="flex justify-start items-center gap-2 tracking-[0.05rem] text-[#8C8C8C] font-semibold abel">
             <span>

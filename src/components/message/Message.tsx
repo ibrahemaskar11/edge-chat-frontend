@@ -1,5 +1,5 @@
 import React from "react";
-import { IMessage } from "../../types/interfaces";
+import { IMessage } from "../../types/chat";
 const Message: React.FC<IMessage> = ({ message, time, isMe }) => {
   return (
     <div

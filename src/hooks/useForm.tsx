@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { IValidateOption, IUseForm } from "../types/interfaces";
-
+import { IValidateOption, IUseForm } from "../types/useForm";
 
 const useForm = <Type,>(
   validateOption: IValidateOption<Type>

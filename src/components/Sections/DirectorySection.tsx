@@ -2,6 +2,7 @@ import React from "react";
 import ChatMember from "../chat/ChatMember";
 import FileHead from "../message/FileHead";
 import ImageHead from "../message/ImageHead";
+import { ChatState } from "../../store/chatProvider";
 
 const ChatMembers = [
   {
@@ -37,6 +38,7 @@ const ChatMembers = [
 ];
 
 const DirectorySection = () => {
+  const { selectedChat } = ChatState();
   return (
     <section className="h-full w-full">
       <div className="w-full border-b-[1px] px-6 h-[5.8rem] flex justify-between items-center">
@@ -63,13 +65,13 @@ const DirectorySection = () => {
           Team Members
         </h3>
         <div className="flex flex-col gap-6 ">
-          {ChatMembers.map((member, index) => (
+          {selectedChat?.users.map((member) => (
             <ChatMember
-              key={index}
+              key={member._id}
               name={member.name}
-              img={member.img}
-              isOnline={member.isOnline}
-              bio={member.bio}
+              img={member.photo}
+              isOnline={true}
+              bio={"Hello, World!"}
             />
           ))}
         </div>

@@ -1,12 +1,12 @@
 import React from "react";
-import { IChatMember } from "../../types/interfaces";
+import { IChatMember } from "../../types/chat";
 const ChatMember: React.FC<IChatMember> = ({ img, name, bio, isOnline }) => {
   return (
     <div className="px-3 flex justify-start gap-2 items-center abel cursor-pointer">
       <div className="col-span-1 flex justify-center items-center">
         <img
-          src={require(`../../assets/accounts/${img}.png`)}
-          className="h-[3.5rem] w-[3.5rem] rounded-xl"
+          src={require(`../../assets/accounts/account-metallica.jpg`)}
+          className=" w-[3.5rem] h-[3.5rem] rounded-xl"
           alt=""
         />
       </div>

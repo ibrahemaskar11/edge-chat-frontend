@@ -7,17 +7,6 @@ export interface IChatHead {
   id: string;
   img: string;
 }
-export interface IValidateOption<Type> {
-  initialState: Type;
-  required: (value: Type) => boolean;
-  error: string;
-}
-
-export interface IUseForm<Type> {
-  value: Type;
-  error: string;
-  handleChange: (val: Type) => void;
-}
 
 //////////////////////////////
 //Needs updating
@@ -54,7 +43,7 @@ export interface IUser {
   name: string;
   email: string;
   bio: string;
-  id: string;
+  _id: string;
   role: string;
 }
 interface ILatestMessage {
@@ -64,19 +53,18 @@ interface ILatestMessage {
   sender: IUser;
 }
 export interface IChat {
-  users: IUser[];
+  chat: {
+    admin: string[];
+    chatName: string;
+    groupImg: string | null;
+    id: string;
+    isGroupChat: boolean;
+    latestMessage: ILatestMessage | null;
+    users: string[];
+  };
   messageGroups: {
     isMe: boolean;
     messages: IMessage[];
   }[];
-  lastMessageTime: ILatestMessage;
-  _id: string;
-  isGroupChat: boolean;
-  admins: string[];
-  chatName: string;
-  groupImg: string | null;
-  groupCreator: string | null;
-  latestMessage: IMessage | null;
-  img: string;
-  name: string;
+  users: IUser[];
 }

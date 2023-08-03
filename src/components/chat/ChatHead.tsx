@@ -1,5 +1,5 @@
 import React from "react";
-import { IChatHead } from "../../types/interfaces";
+import { IChatHead } from "../../types/chat";
 import axios from "axios";
 import { ChatState } from "../../store/chatProvider";
 const ChatHead: React.FC<IChatHead> = ({
@@ -8,8 +8,10 @@ const ChatHead: React.FC<IChatHead> = ({
   latestMessage,
   img,
 }) => {
-  const { setSelectedChat, setSelectedChatIsLoading } = ChatState();
+  const { setSelectedChat, setSelectedChatIsLoading, selectedChat } =
+    ChatState();
   const fetchChatHandler = async () => {
+    if (selectedChat?.chat.id === id) return;
     try {
       setSelectedChatIsLoading(true);
       const res = await axios(
@@ -20,7 +22,7 @@ const ChatHead: React.FC<IChatHead> = ({
       );
       const { data } = res.data;
       console.log(data);
-      
+
       setSelectedChat(data);
       setSelectedChatIsLoading(false);
     } catch (err) {
@@ -35,7 +37,7 @@ const ChatHead: React.FC<IChatHead> = ({
     >
       <div className="col-span-1 flex justify-center items-center">
         <img
-          src={require(`../../assets/accounts/account7.png`)}
+          src={require(`../../assets/accounts/account-metallica.jpg`)}
           className="h-full w-[80%] rounded-xl"
           alt=""
         />

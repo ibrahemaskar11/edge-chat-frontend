@@ -1,12 +1,8 @@
 import React from "react";
-import userImg from "../../assets/accounts/account7.png";
-import { IChatGroup } from "../../types/interfaces";
+import userImg from "../../assets/accounts/account-metallica.jpg";
+import { IChatGroup } from "../../types/chat";
 import Message from "./Message";
-const MessageGroup: React.FC<IChatGroup> = ({
-  messages,
-  isMe,
-  
-}) => {
+const MessageGroup: React.FC<IChatGroup> = ({ messages, isMe }) => {
   return (
     <div
       className={`${
@@ -34,7 +30,7 @@ const MessageGroup: React.FC<IChatGroup> = ({
         })}
         <div className="px-2">
           <h5 className="text-[#1E1E1E]/80 font-semibold text-xs pr-2 inter">
-            {'12:00 AM'}
+            {"12:00 AM"}
           </h5>
         </div>
       </div>

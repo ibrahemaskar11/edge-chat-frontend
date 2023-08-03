@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ChatHead from "../chat/ChatHead";
 import axios from "axios";
-import { IChat, IChatHead } from "../../types/interfaces";
+import { IChat, IChatHead } from "../../types/chat";
 import { ChatState } from "../../store/chatProvider";
 
 const chatHead = [
@@ -50,9 +50,30 @@ const chatHead = [
 ];
 
 const UserChats = () => {
-  const { user, isLoggedIn, chats, setChats, filteredChats, setFilteredChats } =
-    ChatState();
+  const {
+    user,
+    isLoggedIn,
+    chats,
+    setChats,
+    filteredChats,
+    setFilteredChats,
+    setSelectedChat,
+    setSelectedChatIsLoading,
+  } = ChatState();
   useEffect(() => {
+    const fetchSelectedChat = async (id: string) => {
+      const res = await axios(
+        `${process.env.REACT_APP_BACKEND_SERVER}/api/chat/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      const { data } = res.data;
+      console.log(data);
+
+      setSelectedChat(data);
+      setSelectedChatIsLoading(false);
+    };
     const fetchChats = async () => {
       if (!isLoggedIn) return;
       try {
@@ -64,17 +85,17 @@ const UserChats = () => {
           }
         );
         const { data } = res.data;
-
         setChats(data.chats);
         setFilteredChats(data.chats);
+        console.log(data.chats);
+        setSelectedChatIsLoading(true);
+        fetchSelectedChat(data.chats[0].id);
       } catch (err) {
         console.log(err);
       }
     };
     fetchChats();
   }, []);
-  const fetchChatHandler = async () => {};
-  console.log(chats);
   return (
     <div className="flex flex-col gap-8 ">
       {filteredChats.map((chatHead, index) => (

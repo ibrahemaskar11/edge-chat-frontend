@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MessageGroup from "../message/MessageGroup";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { ChatState } from "../../store/chatProvider";
+import CircularLoading from "../UI/CircularLoading";
+import { useRef } from "react";
 
 const ChatBody = () => {
   const [showEmojis, setShowEmojis] = React.useState<boolean>(false);
-  const { selectedChat } = ChatState();
+  const showEmojisRef = useRef<HTMLDivElement>(null);
+  const showEmojisButtonRef = useRef<HTMLButtonElement>(null);
+  const { selectedChat, selectedChatIsLoading } = ChatState();
+
+  useEffect(() => {
+    // if click is outside showEmojisRef then setShowEmojis(false)
+    const handleClickOutside = (e: any) => {
+      if (
+        showEmojisRef.current &&
+        !showEmojisRef.current.contains(e.target) &&
+        showEmojisButtonRef.current &&
+        !showEmojisButtonRef.current.contains(e.target)
+      ) {
+        setShowEmojis(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showEmojisRef, showEmojisButtonRef]);
+
   return (
     <div className="flex flex-col-reverse h-full py-6 px-12 overflow-y-scroll">
       {showEmojis && (
-        <div className="picker">
+        <div className="picker " ref={showEmojisRef}>
           <div className="absolute bottom-[3.7rem] ">
             <Picker
               data={data}
@@ -44,6 +67,7 @@ const ChatBody = () => {
           </button>
           <div className="flex justify-center items-center">
             <button
+              ref={showEmojisButtonRef}
               onClick={() => {
                 setShowEmojis((prevState) => !prevState);
               }}
@@ -90,193 +114,22 @@ const ChatBody = () => {
         </div>
       </div>
       {/* messages */}
-      <div className="flex flex-col-reverse py-8">
-        {selectedChat?.messageGroups.map((messageGroup) => {
-          console.log(messageGroup);
-          return (
-            <MessageGroup
-              messages={messageGroup.messages}
-              isMe={messageGroup.isMe}
-            />
-          );
-        })}
-        {/* Sent messages */}
-        {/* <MessageGroup
-          messages={[
-            {
-              message: "Hello, World!",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "Hello my name is ibrahim",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "How is it going over there!",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-          ]}
-          isMe={true}
-          lastMessageTime="12:00 AM"
-          userId="1"
-          img=""
-        /> */}
-        {/* Recieved messages */}
-        {/* <MessageGroup
-          messages={[
-            {
-              message: "Hello, World!",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "Hello my name is ibrahim",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "How is it going over there!",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-          ]}
-          isMe={false}
-          lastMessageTime="12:00 AM"
-          userId="1"
-          img=""
-        /> */}
-        {/* <MessageGroup
-          messages={[
-            {
-              message: "Hello, World!",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "Hello my name is ibrahim",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "How is it going over there!",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-          ]}
-          isMe={true}
-          lastMessageTime="12:00 AM"
-          userId="1"
-          img=""
-        /> */}
-        {/* <MessageGroup
-          messages={[
-            {
-              message: "Hello, World!",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "Hello my name is ibrahim",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "How is it going over there!",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-          ]}
-          isMe={false}
-          lastMessageTime="12:00 AM"
-          userId="1"
-          img=""
-        /> */}
-        {/* <MessageGroup
-          messages={[
-            {
-              message: "Hello, World!",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "Hello my name is ibrahim",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "How is it going over there!",
-              time: "12:00 PM",
-              isMe: true,
-              userId: "1",
-              createdAt: "",
-            },
-          ]}
-          isMe={true}
-          lastMessageTime="12:00 AM"
-          userId="1"
-          img=""
-        /> */}
-        {/* <MessageGroup
-          messages={[
-            {
-              message: "Hello, World!",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "Hello my name is ibrahim",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-            {
-              message: "How is it going over there!",
-              time: "12:00 PM",
-              isMe: false,
-              userId: "1",
-              createdAt: "",
-            },
-          ]}
-          isMe={false}
-          lastMessageTime="12:00 AM"
-          userId="1"
-          img=""
-        /> */}
-      </div>
+      {selectedChatIsLoading ? (
+        <div className="w-full h-full">
+          <CircularLoading button={false} />
+        </div>
+      ) : (
+        <div className="flex flex-col-reverse py-8">
+          {selectedChat?.messageGroups.map((messageGroup) => {
+            return (
+              <MessageGroup
+                messages={messageGroup.messages}
+                isMe={messageGroup.isMe}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
